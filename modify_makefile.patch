@@ -1,0 +1,114 @@
+From a13a25e55ff4e948d746346c43fffd5fadc5b188 Mon Sep 17 00:00:00 2001
+From: niedaocai <niedaocai@niedaocai-NB.(none)>
+Date: Sat, 12 Jul 2014 20:05:32 +0800
+Subject: [PATCH] modify makefile to build with gcc1.4 under linux os 0.11
+ which created by zhao-jiong
+
+---
+ Makefile                |    2 +-
+ include/linux/config.h  |    4 ++--
+ kernel/Makefile         |    2 +-
+ kernel/blk_drv/Makefile |    2 +-
+ kernel/chr_drv/Makefile |    2 +-
+ kernel/math/Makefile    |    2 +-
+ lib/Makefile            |    2 +-
+ 7 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 49c7e57..139d705 100644
+--- a/Makefile
++++ b/Makefile
+@@ -12,7 +12,7 @@ LD	=gld
+ LDFLAGS	=-s -x -M
+ CC	=gcc $(RAMDISK)
+ CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer \
+--fcombine-regs -mstring-insns
++-fcombine-regs #-mstring-insns
+ CPP	=cpp -nostdinc -Iinclude
+ 
+ #
+diff --git a/include/linux/config.h b/include/linux/config.h
+index b706122..c979fb3 100644
+--- a/include/linux/config.h
++++ b/include/linux/config.h
+@@ -13,10 +13,10 @@
+  * KBD_GR for German keyboards
+  * KBD_FR for Frech keyboard
+  */
+-/*#define KBD_US */
++#define KBD_US 
+ /*#define KBD_GR */
+ /*#define KBD_FR */
+-#define KBD_FINNISH
++/*#define KBD_FINNISH */
+ 
+ /*
+  * Normally, Linux can get the drive parameters from the BIOS at
+diff --git a/kernel/Makefile b/kernel/Makefile
+index 07d7f61..d24f468 100644
+--- a/kernel/Makefile
++++ b/kernel/Makefile
+@@ -12,7 +12,7 @@ LD	=gld
+ LDFLAGS	=-s -x
+ CC	=gcc
+ CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer -fcombine-regs \
+-	-finline-functions -mstring-insns -nostdinc -I../include
++	-finline-functions -nostdinc -I../include
+ CPP	=gcc -E -nostdinc -I../include
+ 
+ .c.s:
+diff --git a/kernel/blk_drv/Makefile b/kernel/blk_drv/Makefile
+index 0fd7cb0..fe611f7 100644
+--- a/kernel/blk_drv/Makefile
++++ b/kernel/blk_drv/Makefile
+@@ -12,7 +12,7 @@ LD	=gld
+ LDFLAGS	=-s -x
+ CC	=gcc
+ CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer -fcombine-regs \
+-	-finline-functions -mstring-insns -nostdinc -I../../include
++	-finline-functions  -nostdinc -I../../include
+ CPP	=gcc -E -nostdinc -I../../include
+ 
+ .c.s:
+diff --git a/kernel/chr_drv/Makefile b/kernel/chr_drv/Makefile
+index 9e2b848..feab087 100644
+--- a/kernel/chr_drv/Makefile
++++ b/kernel/chr_drv/Makefile
+@@ -12,7 +12,7 @@ LD	=gld
+ LDFLAGS	=-s -x
+ CC	=gcc
+ CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer -fcombine-regs \
+-	-finline-functions -mstring-insns -nostdinc -I../../include
++	-finline-functions -nostdinc -I../../include
+ CPP	=gcc -E -nostdinc -I../../include
+ 
+ .c.s:
+diff --git a/kernel/math/Makefile b/kernel/math/Makefile
+index 7e0b4c4..3dc2c93 100644
+--- a/kernel/math/Makefile
++++ b/kernel/math/Makefile
+@@ -12,7 +12,7 @@ LD	=gld
+ LDFLAGS	=-s -x
+ CC	=gcc
+ CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer -fcombine-regs \
+-	-finline-functions -mstring-insns -nostdinc -I../../include
++	-finline-functions -nostdinc -I../../include
+ CPP	=gcc -E -nostdinc -I../../include
+ 
+ .c.s:
+diff --git a/lib/Makefile b/lib/Makefile
+index a4a33b5..9f90d72 100644
+--- a/lib/Makefile
++++ b/lib/Makefile
+@@ -12,7 +12,7 @@ LD	=gld
+ LDFLAGS	=-s -x
+ CC	=gcc
+ CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer -fcombine-regs \
+-	-finline-functions -mstring-insns -nostdinc -I../include
++	-finline-functions -nostdinc -I../include
+ CPP	=gcc -E -nostdinc -I../include
+ 
+ .c.s:
+-- 
+1.7.9.5
+
